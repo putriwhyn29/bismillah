@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pesan Album KPOP - NCT DREAM</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #d1c4e9, #bbdefb);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      width: 350px;
+      max-width: 90%;
+    }
+
+    h2 {
+      text-align: center;
+      color: #673ab7;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      color: #444;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #673ab7;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #5e35b1;
+    }
+
+    .output {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: #e8f5e9;
+      color: #388e3c;
+      border-radius: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Pesan Album NCT DREAM</h2>
+    <form id="orderForm">
+      <label for="nama">Nama Lengkap</label>
+      <input type="text" id="nama" required />
+
+      <label for="telepon">No. Telepon</label>
+      <input type="tel" id="telepon" required />
+
+      <label for="produk">Pilih Produk</label>
+      <select id="produk" required>
+        <option value="" disabled selected>-- Pilih Album --</option>
+        <option value="Hello Future">Hello Future - Rp 250.000</option>
+        <option value="Hot Sauce">Hot Sauce - Rp 230.000</option>
+        <option value="Reload">Reload - Rp 220.000</option>
+        <option value="Hello Future + Totebag">Hello Future + Totebag - Rp 340.000</option>
+      </select>
+
+      <button type="submit">Pesan Sekarang</button>
+    </form>
+
+    <div class="output" id="outputBox"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('orderForm');
+    const output = document.getElementById('outputBox');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nama = document.getElementById('nama').value;
+      const telepon = document.getElementById('telepon').value;
+      const produk = document.getElementById('produk').value;
+
+      let harga;
+      let estimasi = "3-5 hari kerja";
+
+      switch(produk) {
+        case 'Hello Future':
+          harga = "Rp 250.000";
+          break;
+        case 'Hot Sauce':
+          harga = "Rp 230.000";
+          break;
+        case 'Reload':
+          harga = "Rp 220.000";
+          break;
+        case 'Hello Future + Totebag':
+          harga = "Rp 340.000";
+          break;
+        default:
+          harga = "Rp 0";
+      }
+
+      output.innerHTML = `
+        <strong>Pesanan Berhasil!</strong><br>
+        Terima kasih, <strong>${nama}</strong>.<br>
+        Produk: <strong>${produk}</strong><br>
+        Harga: <strong>${harga}</strong><br>
+        Akan dikirim ke nomor <strong>${telepon}</strong>.<br>
+        Estimasi kedatangan: <strong>${estimasi}</strong>.
+      `;
+      output.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
